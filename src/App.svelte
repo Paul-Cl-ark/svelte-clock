@@ -4,6 +4,7 @@
   import { Button } from 'svelma'
   import { time } from './stores.js'
   import { onMount } from 'svelte'
+  import { fade } from 'svelte/transition'
 
   let quote
 
@@ -23,7 +24,7 @@
 </script>
 
 <main>
-  <div class="hero is-fullheight">
+  <div class="hero is-fullheight has-background-light">
     <div class="hero-body">
       <div class="container">
         <div class="content">
@@ -34,9 +35,11 @@
         </div>
         <div class="columns">
           <div class="column is-6 is-offset-3">
-            <div class="box">
+            {#if quote}
+            <div transition:fade class="box">
               <p class="subtitle has-text-danger">{quote}</p>
             </div>
+            {/if}
           </div>
         </div>
       </div>
