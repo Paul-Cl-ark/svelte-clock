@@ -3,6 +3,16 @@
   import 'bulma/css/bulma.css'
   import { Button } from 'svelma'
   import { time } from './stores.js'
+  import { onMount } from 'svelte'
+
+  let quote
+
+  onMount(async () => {
+    const response = await fetch(
+      'https://api.tronalddump.io/random/quote'
+    ).then((response) => response.json())
+    quote = response.value
+  })
 
   const formatter = new Intl.DateTimeFormat('en', {
     hour12: true,
@@ -13,13 +23,22 @@
 </script>
 
 <main>
-  <div class="hero is-fullheight is-success">
+  <div class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
-        <p class="is-size-6 field">Hello {name}!</p>
-        <p class="title is-2 has-text-light">
-          The time is {formatter.format($time)}
-        </p>
+        <div class="content">
+          <p class="title is-5 has-text-info">Hello {name}!</p>
+          <p class="title is-2 has-text-success">
+            The time is {formatter.format($time)}
+          </p>
+        </div>
+        <div class="columns">
+          <div class="column is-6 is-offset-3">
+            <div class="box">
+              <p class="subtitle has-text-danger">{quote}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
