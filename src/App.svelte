@@ -5,6 +5,7 @@
   import { time } from './stores.js'
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
+  import Quote from './components/Quote.svelte';
 
   let quote
 
@@ -52,15 +53,9 @@
             {/each}
           </p>
         </div>
-        <div class="columns">
-          <div class="column is-6 is-offset-3">
-            {#if quote}
-            <div transition:fade class="box">
-              <p class="subtitle has-text-danger">{quote}</p>
-            </div>
-            {/if}
-          </div>
-        </div>
+        {#if quote}
+        <Quote {quote}/>
+        {/if}
       </div>
     </div>
   </div>
