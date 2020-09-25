@@ -5,7 +5,7 @@
 <div class="columns">
   <div class="column is-6 is-offset-3">
     <div class="box">
-      <p class="subtitle has-text-danger">{quote}</p>
+      <p class="has-text-danger is-italic">{quote}</p>
     </div>
   </div>
 </div>
