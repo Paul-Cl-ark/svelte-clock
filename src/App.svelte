@@ -3,18 +3,27 @@
   import 'bulma/css/bulma.css'
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
-  import Quote from './components/Quote.svelte';
-  import Time from './components/Time.svelte';
+  import Quote from './components/Quote.svelte'
+  import Time from './components/Time.svelte'
+  import DangerButton from './components/DangerButton.svelte'
+  import CatFact from './components/CatFact.svelte'
 
   let quote
+  let catFact
 
-  onMount(async () => {
-    const response = await fetch(
-      'https://api.tronalddump.io/random/quote'
-    ).then((response) => response.json())
-    quote = response.value
+  onMount(() => {
+    fetch('https://api.tronalddump.io/random/quote')
+      .then(response => response.json())
+      .then(response => quote = response.value)
+      .catch(err => {})
   })
 
+  const getCatFact = () => {
+    fetch('https://cat-fact.herokuapp.com/facts/random')
+      .then(response => response.json())
+      .then(response => catFact = response.text)
+      .catch(err => {})
+  }
 </script>
 
 <main>
@@ -26,9 +35,16 @@
           <Time/>
         </div>
         {#if quote}
-        <div transition:fade>
+        <div transition:fade class="content">
           <Quote {quote}/>
         </div>
+        {/if}
+        {#if !catFact}
+        <div>
+          <DangerButton on:getCatFact={getCatFact}/>
+        </div>
+        {:else}
+          <CatFact {catFact}/>
         {/if}
       </div>
     </div>
