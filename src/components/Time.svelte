@@ -9,7 +9,7 @@
   })
 
   const colourMap = {
-    0: 'grey-dark',
+    0: 'lime',
     1: 'primary',
     2: 'link',
     3: 'info',
@@ -18,10 +18,10 @@
     6: 'warning',
     7: 'grey',
     8: 'danger',
-    9: 'black-bis',
-    ':': 'grey-lighter',
-    P: 'grey-lighter',
-    M: 'grey-lighter'
+    9: 'pink',
+    ':': 'orange',
+    P: 'orange',
+    M: 'orange'
   }
 </script>
 
@@ -31,3 +31,15 @@
   <span class="{`has-text-${colourMap[item]}`}">{item}</span>
   {/each}
 </p>
+
+<style>
+  .has-text-pink {
+    color: hsl(305, 87%, 50%);
+  }
+  .has-text-orange {
+    color: hsl(16, 95%, 63%);
+  }
+  .has-text-lime {
+    color: hsl(93, 95%, 63%);
+  }
+</style>
