@@ -5,4 +5,4 @@
   const getCatFact = () => dispatch('getCatFact')
 </script>
 
-<Button on:click="{getCatFact}" class="is-danger">‽</Button>
+<Button on:click="{getCatFact}" class="is-danger">?</Button>
